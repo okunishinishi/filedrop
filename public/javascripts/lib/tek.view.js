@@ -409,7 +409,7 @@
 		
 		    });
 		};
-		
+
 		
 		/**
 		 * create spin
@@ -556,9 +556,6 @@
 		                input.addClass('tk-hidden');
 		                label.text(val).removeClass('tk-hidden');
 		                e.stopPropagation();
-		            })
-		            .change(function () {
-		                input.trigger('tk-editable-text-fix');
 		            });
 		    });
 		};
