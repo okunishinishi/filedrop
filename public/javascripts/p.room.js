@@ -94,13 +94,17 @@
                             name: data.name,
                             _id: data._id,
                             privacy: data.privacy,
-                            retention:data.retention
+                            retention: data.retention
                         } || {});
                     $('#room-name-label').text(data.name);
                     form.editableForm('view');
                 }, 10);
                 return form;
             };
+
+            $('#room-detail-close-btn').click(function () {
+                form.editableForm('view');
+            });
 
             return form;
         },
