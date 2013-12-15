@@ -1,3 +1,11 @@
 <li>
     <a href="{{href}}" target="_blank" download="{{name}}">{{name}}</a>
+
+    <form class="inline-form float-right"
+          method="post"
+          name="destroy-form"
+          action="{{ctx}}/api/room/destroy_file">
+        <input type="hidden" name="url" value="{{href}}"/>
+        <button type="submit" class="room-file-destroy-btn">&times;</button>
+    </form>
 </li>

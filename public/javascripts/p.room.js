@@ -157,6 +157,19 @@
                 div.empty().dropUploadInput(action, 'room_file');
             };
             return div;
+        },
+        roomFileListItem: function () {
+            return this.each(function () {
+                var li = $(this);
+                if (li.data('room-file-list-item')) return;
+                li.data('room-file-list-item', true);
+                li.findByName('destroy-form')
+                    .ajaxForm(function () {
+                        li.closeDown(300, function () {
+                            li.remove();
+                        });
+                    });
+            });
         }
     });
 
@@ -183,7 +196,10 @@
                 }
             }).on('detail-form-load-done', function (e, data) {
                     var tmpl = hbs.templates['room-file-list-item'];
-                    roomFileList.htmlHandlebars(tmpl, data.files);
+                    roomFileList
+                        .htmlHandlebars(tmpl, data.files)
+                        .find('li')
+                        .roomFileListItem();
                 });
 
         var _id = q._id;

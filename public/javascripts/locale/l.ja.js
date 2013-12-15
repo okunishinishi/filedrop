@@ -35,6 +35,7 @@ l = {
     "role": "role",
     "public": "public",
     "private": "private",
+    "room": "room",
     "msg": {
         "prove_human_please": "Prove you are human, not a bot.",
         "input_captcha_please": "type above number",

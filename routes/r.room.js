@@ -162,5 +162,20 @@ exports.api = {
         Room.findByCondition(condition,function (models) {
             res.json(models);
         }).limit(limit).skip(skip);
+    },
+    destroy_file: function (req, res) {
+        var data = req.body;
+        var url = data && data['url'],
+            filepath = url && resolve(config.publicDir, url.replace(/^\//, ""));
+        fs.exists(filepath, function (exists) {
+            if (exists) {
+                fs.unlink(filepath, function () {
+                    //TODO clean dir
+                    res.json({});
+                });
+            } else {
+                res.json({});
+            }
+        });
     }
 };

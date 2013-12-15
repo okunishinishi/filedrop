@@ -35,6 +35,7 @@ l.profile = 'profile';
 l.role = 'role';
 l.public = 'public';
 l.private = 'private';
+l.room = 'room';
 
 
 l.msg = {};
