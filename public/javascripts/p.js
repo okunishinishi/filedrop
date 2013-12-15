@@ -285,13 +285,18 @@
         selectableList: function (options, callback) {
             options = $.extend({
                 deselect: false
-            }, options)
+            }, options);
             return this.each(function () {
                 var ul = $(this);
                 ul
                     .addClass('selectable-list')
                     .on('click', 'li', function () {
                         var li = $(this);
+                        if (li.data('selected-list-item-busy')) return;
+                        li.data('selected-list-item-busy', true);
+                        setTimeout(function () {
+                            li.data('selected-list-item-busy', false);
+                        }, 500);
                         if (options.deselect) {
                             if (li.hasClass('selected-list-item')) {
                                 li.removeClass('selected-list-item');

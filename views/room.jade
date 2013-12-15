@@ -17,8 +17,9 @@ mixin room-detail-form
             +edit-btn().margin-link
             +destroy-btn()#room-destroy-btn
         h1.no-margin: +text('name', data)(id='room-name-input').wide-input
-        br.clear
 
+        br.clear
+        br.clear
 
         +submit-btn(l.save)
         +reset-btn(l.reset).hidden
@@ -40,3 +41,6 @@ block content
             +room-destroy-form#room-destroy-form
             +room-detail-form#room-detail-form
             #file-upload-div(data-post=url('/upload/room_file'))
+
+            ul#room-file-list
+

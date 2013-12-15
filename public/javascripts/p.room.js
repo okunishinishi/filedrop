@@ -24,6 +24,7 @@
             }, function (li) {
                 var _id = li && li.attr('id').split('-').pop() || null;
                 ul.data('selected_id', _id);
+
                 callback && callback(_id);
             });
 
@@ -127,10 +128,8 @@
                         .setDetailFormValue(data)
                         .removeClass('tk-loading')
                         .hide()
-                        .fadeIn();
-
-                    destroyForm
-                        .setFormValue(data);
+                        .fadeIn()
+                        .trigger('detail-form-load-done', [data]);
                 });
                 section
                     .removeClass('empty-section');
@@ -166,8 +165,8 @@
             aside = body.find('aside'),
             q = $.getQuery() || {};
 
-        var roomUploadFormDiv = $('#file-upload-div')
-            .roomUploadFormDiv();
+        var roomUploadFormDiv = $('#file-upload-div').roomUploadFormDiv(),
+            roomFileList = $("#room-file-list");
 
         var listSection = $('#room-list-section', body),
             detailSection = $('#room-detail-section', body).roomDetailSection({
@@ -182,7 +181,10 @@
                     $.pushQueryToState({_id: ''});
                     listSection.find('#room-list-item-' + _id).remove();
                 }
-            });
+            }).on('detail-form-load-done', function (e, data) {
+                    var tmpl = hbs.templates['room-file-list-item'];
+                    roomFileList.htmlHandlebars(tmpl, data.files);
+                });
 
         var _id = q._id;
         aside
