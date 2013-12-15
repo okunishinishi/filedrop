@@ -15,11 +15,11 @@ mixin room-detail-form
         #room-detail-form-inner
             +empty-link#room-detail-close-btn.close-btn.stick-right.stick-top &times;
             +hidden('_id')
+            .float-right.hoverable-child
+                +empty-link(l.room_settings).margin-link.setting-btn
+                //+destroy-btn()#room-destroy-btn
             h1
                 #room-name-label
-            .float-right.hoverable-child
-                +empty-link.margin-link.setting-btn
-                //+destroy-btn()#room-destroy-btn
 
             table#room-detail-table.wide-table
                 colgroup
@@ -29,7 +29,11 @@ mixin room-detail-form
                     tr
                         th: +label('room-name-input')=l.room_name
                         td: +text('name', data)(id='room-name-input').wide-input
-
+                    tr
+                        th: +label('room-retention-input')=l.file_retention
+                        td
+                            +number('retention', {})(min="0", max="1000")#room-retention-input
+                            span=l.days
                     tr
                         th: label=l.privacy
                         td: each key in ['public', 'private']
@@ -39,23 +43,19 @@ mixin room-detail-form
                                 span &nbsp;
                     tr.private-key-tr
                         th
-                            +label('private_key-input')=l.room_private_key
+                            +label('private_password-input')=l.room_private_password
                         td
                             span.key-btn
-                            +password('private_key')(value='xxxxxx')
-                            +hidden('private_key_changed')(value='false')#private_key-input
+                            +password('private_password')(value='xxxxxx')
+                            +hidden('private_password_changed')(value='false')#private_password-input
                     tr.private-key-tr
                         th
-                            +label('private_key_again')=l.room_private_key_again
+                            +label('private_password_again')=l.room_private_password_again
                         td
                             span.key-btn
-                            +password('private_key_again')(value='xxxxxx')#private_key_again-input
+                            +password('private_password_again')(value='xxxxxx')#private_password_again-input
 
-                    tr
-                        th: +label('room-retention-input')=l.file_retention
-                        td
-                            +number('retention', {})#room-retention-input
-                            span=l.days
+
 
 
             +submit-btn(l.save)

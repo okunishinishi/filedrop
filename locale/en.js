@@ -39,9 +39,10 @@ l.room = 'room';
 l.days = 'days';
 l.room_name = 'room name';
 l.file_retention = 'file retention';
-l.room_private_key = 'password';
-l.privacy='privacy';
-l.room_private_key_again = 'password(again)';
+l.room_private_password = 'password';
+l.privacy = 'privacy';
+l.room_private_password_again = 'password(again)';
+l.room_settings = 'settings';
 
 
 l.msg = {};

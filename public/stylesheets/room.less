@@ -64,6 +64,9 @@ col:nth-child(1) {
     #room-detail-close-btn{
       display: none !important;
     }
+    #room-detail-table{
+      display: none !important;
+    }
   }
   &[data-mode="edit"] {
     .cover(501);
@@ -88,5 +91,11 @@ col:nth-child(1) {
         text-align: left;
       }
     }
+    h1{
+      border-bottom:none;
+    }
+  }
+  h1{
+    border-bottom: 1px solid @border;
   }
 }

@@ -97,15 +97,50 @@
                             retention: data.retention
                         } || {});
                     $('#room-name-label').text(data.name);
-                    form.editableForm('view');
+                    form.viewMode();
+                    display();
                 }, 10);
                 return form;
             };
 
-            $('#room-detail-close-btn').click(function () {
+            form.viewMode = function () {
                 form.editableForm('view');
+            };
+
+            $('#room-detail-close-btn').click(function () {
+                form.viewMode();
             });
 
+            form
+                .on('click', 'setting-btn', function () {
+                    form.data('room-detail-form-busy', true);
+                    setTimeout(function () {
+                        form.data('room-detail-form-busy', false);
+                    }, 250);
+                })
+                .on('click', '#room-detail-form-inner', function (e) {
+                    e.stopPropagation();
+                })
+                .on('click', function () {
+                    if (form.data('room-detail-form-busy')) return;
+                    form.viewMode();
+                });
+
+            function display() {
+                var privateKeyTr = $('.private-key-tr', form);
+                var privacy = privacyInput.filter(':checked').val();
+                switch (privacy) {
+                    case 'private':
+                        privateKeyTr.show();
+                        break;
+                    default:
+                        privateKeyTr.hide();
+                }
+            }
+
+            var privacyInput = form.findByName('privacy').change(function () {
+                display();
+            });
             return form;
         },
         roomDetailSection: function (options) {
@@ -195,9 +230,8 @@
             detailSection = $('#room-detail-section', body).roomDetailSection({
                 load: function (_id) {
                     aside.removeClass('wide-aside');
-                    roomUploadFormDiv.setRoomId(_id);
-
-
+                    roomUploadFormDiv
+                        .setRoomId(_id);
                 },
                 unload: function () {
                     aside.addClass('wide-aside');
@@ -206,16 +240,17 @@
                     $.pushQueryToState({_id: ''});
                     listSection.find('#room-list-item-' + _id).remove();
                 }
-            }).on('detail-form-load-done', function (e, data) {
+            })
+                .on('detail-form-load-done', function (e, data) {
                     var tmpl = hbs.templates['room-file-list-item'];
                     roomFileList
                         .htmlHandlebars(tmpl, data.files)
                         .find('li')
                         .roomFileListItem();
-
+                    roomUploadFormDiv.show();
                     setTimeout(function () {
 
-                        $('.setting-btn').click(); //FIXME remvoe
+//                        $('.setting-btn').click(); //FIXME remvoe
                     }, 300)
                 });
 
@@ -224,6 +259,7 @@
             .toggleClass('wide-aside', !_id);
         listSection.roomListSection(_id, function (_id) {
             $.pushQueryToState({_id: _id});
+            roomUploadFormDiv.hide();
             detailSection.load(_id);
             aside
                 .addClass('animatable')
@@ -231,7 +267,7 @@
             aside.resize();
         });
         $('header', body).header('#room-link-btn');
-
+        roomUploadFormDiv.hide();
 
         aside.resize = function () {
             setTimeout(function () {

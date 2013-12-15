@@ -243,7 +243,10 @@
                 .find('[type="text"],[type="number"],[type="password"],[type="email"],textarea');
             editableText
                 .not('.tk-editable-text')
-                .editableText('__never_call__');
+                .editableText({
+                    editTrigger: '__never_call__',
+                    fixTrigger: '__never_call__'
+                });
             switch (mode) {
                 case 'view':
                     editableText.trigger('tk-editable-text-fix');
@@ -253,6 +256,7 @@
                     break;
             }
             form
+                .data('mode', mode)
                 .attr('data-mode', mode);
             return form;
         },
