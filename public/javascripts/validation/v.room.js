@@ -10,6 +10,12 @@ v.room = (function (v) {
         update: new Schema({
             _id: {
                 required: true
+            },
+            name:{
+                required:true
+            },
+            retention:{
+                required:true
             }
         }),
         destroy: new Schema({
