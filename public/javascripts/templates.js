@@ -67,7 +67,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<li class=\"hoverable positioned\" id=\"room-list-item-";
+  buffer += "<li class=\"hoverable positioned privacy-";
+  if (stack1 = helpers.privacy) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.privacy; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " room-list-item\" id=\"room-list-item-";
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0._id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
