@@ -81,7 +81,7 @@
             var form = $(this);
             form.detailForm({
                 schema: v.room.update,
-                editBtn: ".edit-btn"
+                editBtn: ".setting-btn"
             }, function (data) {
                 form.setDetailFormValue(data.room);
                 callback && callback();
@@ -91,9 +91,12 @@
                 setTimeout(function () {
                     form
                         .setFormValue({
-                            name:data.name,
-                            _id:data._id
+                            name: data.name,
+                            _id: data._id,
+                            privacy: data.privacy,
+                            retention:data.retention
                         } || {});
+                    $('#room-name-label').text(data.name);
                     form.editableForm('view');
                 }, 10);
                 return form;
@@ -189,6 +192,8 @@
                 load: function (_id) {
                     aside.removeClass('wide-aside');
                     roomUploadFormDiv.setRoomId(_id);
+
+
                 },
                 unload: function () {
                     aside.addClass('wide-aside');
@@ -203,6 +208,11 @@
                         .htmlHandlebars(tmpl, data.files)
                         .find('li')
                         .roomFileListItem();
+
+                    setTimeout(function () {
+
+                        $('.setting-btn').click(); //FIXME remvoe
+                    }, 300)
                 });
 
         var _id = q._id;

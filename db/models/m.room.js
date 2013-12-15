@@ -10,4 +10,5 @@ var tek = require('tek'),
     defineModel = DB['defineModel'];
 
 var Room = module.exports = defineModel({
+    retention:3
 });

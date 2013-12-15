@@ -36,6 +36,12 @@ l = {
     "public": "public",
     "private": "private",
     "room": "room",
+    "days": "days",
+    "room_name": "room name",
+    "file_retention": "file retention",
+    "room_private_key": "password",
+    "privacy": "privacy",
+    "room_private_key_again": "password(again)",
     "msg": {
         "prove_human_please": "Prove you are human, not a bot.",
         "input_captcha_please": "type above number",

@@ -11,28 +11,55 @@ mixin room-destroy-form
     +destroy-form(action=url('/api/room/destroy'), attributes).invisible-form
         +hidden('_id')
 mixin room-detail-form
-    +detail-form(action=url('/api/room/save'), attributes)
-        +hidden('_id')
-        .float-right.hoverable-child
-            +edit-btn().margin-link
-            +destroy-btn()#room-destroy-btn
-        h1.no-margin: +text('name', data)(id='room-name-input').wide-input
+    +detail-form(action=url('/api/room/save'), autocomplete='off', attributes)
+        #room-detail-form-inner
+            +empty-link#room-detail-close-btn.close-btn.stick-right.stick-top &times;
+            +hidden('_id')
+            h1
+                #room-name-label
+            .float-right.hoverable-child
+                +empty-link.margin-link.setting-btn
+                //+destroy-btn()#room-destroy-btn
+
+            table#room-detail-table.wide-table
+                colgroup
+                    col
+                    col
+                tbody
+                    tr
+                        th: +label('room-name-input')=l.room_name
+                        td: +text('name', data)(id='room-name-input').wide-input
+
+                    tr
+                        th: label=l.privacy
+                        td: each key in ['public', 'private']
+                            input(type='radio', value=key, name='privacy', id='room-privacy-radio-'+key)
+                            label(for='room-privacy-radio-'+key)
+                                span(class=(key+'-btn'))=l[key]
+                                span &nbsp;
+                    tr.private-key-tr
+                        th
+                            +label('private_key-input')=l.room_private_key
+                        td
+                            span.key-btn
+                            +password('private_key')(value='xxxxxx')
+                            +hidden('private_key_changed')(value='false')#private_key-input
+                    tr.private-key-tr
+                        th
+                            +label('private_key_again')=l.room_private_key_again
+                        td
+                            span.key-btn
+                            +password('private_key_again')(value='xxxxxx')#private_key_again-input
+
+                    tr
+                        th: +label('room-retention-input')=l.file_retention
+                        td
+                            +number('retention', {})#room-retention-input
+                            span=l.days
 
 
-        each key in ['public', 'private']
-            input(type='radio', value=key, name='privacy', id='room-privacy-radio-'+key)
-            label(for='room-privacy-radio-'+key)
-                span(class=(key+'-btn'))=l[key]
-            span &nbsp;
-
-        div
-            //label.key-btn=l.private_key
-
-        br.clear
-        br.clear
-
-        +submit-btn(l.save)
-        +reset-btn(l.reset).hidden
+            +submit-btn(l.save)
+            +reset-btn(l.reset).hidden
 
 block stylesheets
     +css('room.css')

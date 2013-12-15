@@ -36,6 +36,12 @@ l.role = 'role';
 l.public = 'public';
 l.private = 'private';
 l.room = 'room';
+l.days = 'days';
+l.room_name = 'room name';
+l.file_retention = 'file retention';
+l.room_private_key = 'password';
+l.privacy='privacy';
+l.room_private_key_again = 'password(again)';
 
 
 l.msg = {};

@@ -240,7 +240,7 @@
         editableForm: function (mode) {
             var form = $(this);
             var editableText = form
-                .find('[type="text"],textarea');
+                .find('[type="text"],[type="number"],[type="password"],[type="email"],textarea');
             editableText
                 .not('.tk-editable-text')
                 .editableText('__never_call__');

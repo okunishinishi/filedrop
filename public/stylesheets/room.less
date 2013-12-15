@@ -46,6 +46,47 @@ col:nth-child(1) {
     opacity: 1;
   }
 }
-#file-upload-div{
-  margin-left:40px;
+
+#file-upload-div {
+  margin-left: 40px;
+}
+
+#room-detail-form {
+  &[data-mode="view"]{
+    .private-key-tr{
+      .tk-editable-label{
+        display: none !important;
+      }
+      .key-btn:after{
+        content:"****";
+      }
+    }
+    #room-detail-close-btn{
+      display: none !important;
+    }
+  }
+  &[data-mode="edit"] {
+    .cover(501);
+    position: fixed;
+    .black-back(.5);
+    .setting-btn{
+      display: none !important;
+    }
+    #room-detail-form-inner{
+      position: relative;
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: @white;
+      padding: 10px 20px;
+      .close-btn{
+        top:5px;
+        right:5px;
+        display: inline-block;
+        padding: 2px 4px;
+      }
+      td{
+        text-align: left;
+      }
+    }
+  }
 }
