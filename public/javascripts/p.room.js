@@ -88,9 +88,12 @@
             });
             form.setDetailFormValue = function (data) {
                 form.find(':reset').click();
-                form
-                    .setFormValue(data || {});
                 setTimeout(function () {
+                    form
+                        .setFormValue({
+                            name:data.name,
+                            _id:data._id
+                        } || {});
                     form.editableForm('view');
                 }, 10);
                 return form;
