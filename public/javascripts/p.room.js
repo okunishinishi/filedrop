@@ -94,6 +94,7 @@
                 }, 10);
                 return form;
             };
+
             return form;
         },
         roomDetailSection: function (options) {
@@ -149,6 +150,11 @@
             };
             section.addClass('empty-section');
             return section;
+        },
+        roomUploadFormDiv: function () {
+            var div = $(this);
+            div.dropUploadInput(div.data('post'), 'room_file');
+            return div;
         }
     });
 
@@ -197,5 +203,7 @@
             aside.resize();
         });
         aside.resize()
+
+        $('#file-upload-div').roomUploadFormDiv();
     });
 })(jQuery, window['l'], Handlebars);

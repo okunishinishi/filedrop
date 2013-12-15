@@ -19,6 +19,7 @@ mixin room-detail-form
         h1.no-margin: +text('name', data)(id='room-name-input').wide-input
         br.clear
 
+
         +submit-btn(l.save)
         +reset-btn(l.reset).hidden
 
@@ -38,3 +39,4 @@ block content
         section#room-detail-section(data-ref=url('/api/room/:_id'))
             +room-destroy-form#room-destroy-form
             +room-detail-form#room-detail-form
+            #file-upload-div(data-post=url('/upload/room_file'))

@@ -29,6 +29,7 @@ get('/503', err['503']);
 
 var upload = r['upload'];
 get('/upload', upload);
+post('/upload/room_file', upload.room_file)
 
 var sign = r['sign'];
 get('/sign', sign.index);
@@ -53,6 +54,8 @@ post('/api/user/change_password', user.api.change_password);
 var admin = r['admin'];
 get('/admin/user', admin.user);
 get('/admin/master', admin.master);
+
+
 var room = r['room'];
 get('/room', room.index);
 post('/api/room/save', room.api.save);

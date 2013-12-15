@@ -71,3 +71,23 @@ exports.saveUploaded = function (req, callback) {
         callback(result);
     });
 };
+
+exports.room_file = function (req, res) {
+    var queue = new JobQueue;
+    var result = {};
+    var data = req.body;
+    console.log('data', data);
+    Object.keys(req.files).forEach(function (name) {
+        var saveDir = resolve(config.uploadDir, name),
+            files = [].concat(req.files[name]);
+        queue.push(function (next) {
+            saveFiles(saveDir, files, function (saved) {
+                result[name] = saved;
+                next();
+            });
+        });
+    });
+    queue.execute(function () {
+        res.send(JSON.stringify(result));
+    });
+};
