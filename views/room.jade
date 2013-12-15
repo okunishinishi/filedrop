@@ -1,0 +1,40 @@
+extends layout
+mixin room-search-form
+    +search-form(action=url('/api/room.json'), attributes)
+        h3.caption.float-left.no-margin=capitalize(pluralize(l.room || ''))
+        +search('search_word', {}).float-right
+        +hidden('limit')(value=1000)
+        +hidden('skip')(value=0)
+        br.clear
+
+mixin room-destroy-form
+    +destroy-form(action=url('/api/room/destroy'), attributes).invisible-form
+        +hidden('_id')
+mixin room-detail-form
+    +detail-form(action=url('/api/room/save'), attributes)
+        +hidden('_id')
+        .float-right.hoverable-child
+            +edit-btn().margin-link
+            +destroy-btn()#room-destroy-btn
+        h1.no-margin: +text('name', data)(id='room-name-input').wide-input
+        br.clear
+
+        +submit-btn(l.save)
+        +reset-btn(l.reset).hidden
+
+block stylesheets
+    +css('room.css')
+block javascripts
+    +js('validation/v.room.js')
+    +js('p.room.js')
+block content
+    aside.wide-aside
+        section#room-list-section
+            +room-search-form#room-search-form
+            .y-scrollable
+                ul#room-list.editable-list
+            +new-btn#new-room-btn
+    article
+        section#room-detail-section(data-ref=url('/api/room/:_id'))
+            +room-destroy-form#room-destroy-form
+            +room-detail-form#room-detail-form
