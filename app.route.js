@@ -29,7 +29,7 @@ get('/503', err['503']);
 
 var upload = r['upload'];
 get('/upload', upload);
-post('/upload/room_file', upload.room_file)
+post('/upload/room_file/:room_id', upload.room_file)
 
 var sign = r['sign'];
 get('/sign', sign.index);

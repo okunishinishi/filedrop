@@ -1,7 +1,7 @@
 var l = exports;
 
 l.app = {
-    name: 'filedrop'
+    name: 'FileDrop'
 };
 l.admin = 'admin';
 l.signin = 'sign in';

@@ -134,7 +134,7 @@
                 });
                 section
                     .removeClass('empty-section');
-                options.load && options.load.call(section);
+                options.load && options.load.call(section, _id);
                 return section;
             };
             section.unload = function () {
@@ -153,7 +153,10 @@
         },
         roomUploadFormDiv: function () {
             var div = $(this);
-            div.dropUploadInput(div.data('post'), 'room_file');
+            div.setRoomId = function (room_id) {
+                var action = [div.data('post'), room_id].join('/');
+                div.empty().dropUploadInput(action, 'room_file');
+            };
             return div;
         }
     });
@@ -163,10 +166,14 @@
             aside = body.find('aside'),
             q = $.getQuery() || {};
 
+        var roomUploadFormDiv = $('#file-upload-div')
+            .roomUploadFormDiv();
+
         var listSection = $('#room-list-section', body),
             detailSection = $('#room-detail-section', body).roomDetailSection({
-                load: function () {
+                load: function (_id) {
                     aside.removeClass('wide-aside');
+                    roomUploadFormDiv.setRoomId(_id);
                 },
                 unload: function () {
                     aside.addClass('wide-aside');
@@ -202,8 +209,8 @@
         $(window).resize(function () {
             aside.resize();
         });
-        aside.resize()
+        aside.resize();
 
-        $('#file-upload-div').roomUploadFormDiv();
+
     });
 })(jQuery, window['l'], Handlebars);

@@ -29,7 +29,10 @@ function saveFiles(save_dirpath, files, callback) {
             copy(file.path, save_path, function (err) {
                 err && handleErr(err);
                 saveFiles(save_dirpath, files, function (result) {
-                    result.unshift(save_path);
+                    result.unshift({
+                        path: save_path,
+                        name: file.name
+                    });
                     callback(result);
                 });
             });
@@ -75,10 +78,9 @@ exports.saveUploaded = function (req, callback) {
 exports.room_file = function (req, res) {
     var queue = new JobQueue;
     var result = {};
-    var data = req.body;
-    console.log('data', data);
+    var room_id = req.params['room_id'];
     Object.keys(req.files).forEach(function (name) {
-        var saveDir = resolve(config.uploadDir, name),
+        var saveDir = resolve(config.uploadDir, name, room_id),
             files = [].concat(req.files[name]);
         queue.push(function (next) {
             saveFiles(saveDir, files, function (saved) {
