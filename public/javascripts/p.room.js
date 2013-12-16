@@ -304,7 +304,5 @@
             aside.resize();
         });
         aside.resize();
-
-
     });
 })(jQuery, window['l'], Handlebars);
