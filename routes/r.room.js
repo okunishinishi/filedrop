@@ -142,7 +142,15 @@ exports.api = {
                     fail(err);
                     return;
                 }
-                room.files = files;
+                var retention = Number(room.retention || 3) * 24 * 60 * 60 * 1000;
+                room.files = files.map(function (file) {
+                    var date_string = path.basename(path.dirname(file.href)),
+                        date = new Date(Number(date_string)),
+                        passed = new Date() - date;
+                    file.life = (retention - passed) / (24 * 60 * 60 * 1000);
+                    if (file.life < 0) file.life = 0;
+                    return file;
+                });
                 res.json(room);
             });
         });

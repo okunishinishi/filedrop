@@ -31,8 +31,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 	function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <span class=\"remain-lif-label\">vanish in ";
+  if (stack1 = helpers.life) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.life; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " days</span>\n        ";
+  return buffer;
+  }
 
   buffer += "<li style=\"position: relative\" class=\"room-file-list-item\">\n\n    <form class=\"inline-form float-right\"\n          method=\"post\"\n          name=\"destroy-form\"\n          action=\"";
   if (stack1 = helpers.ctx) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
@@ -50,11 +60,14 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">";
+    + "\">\n        ";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a>\n</li>";
+    + "\n        ";
+  stack1 = helpers['if'].call(depth0, depth0.life, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </a>\n</li>";
   return buffer;
   }
 	);

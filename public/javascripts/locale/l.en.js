@@ -52,7 +52,7 @@ l = {
         "password_did_change": "Password changed.",
         "has_unsaved": "Your have unsaved changes",
         "you_sure": "Are you sure?",
-        "upload_done": "upload done"
+        "upload_done": "Upload Done!"
     },
     "err": {
         "something_worng": "Sorry! Something is wrong.",

@@ -151,9 +151,9 @@
         },
         roomDetailSection: function (options) {
             var section = $(this).show(),
-                destroyForm = $('#room-destroy-form', section),
+                destroyForm = $('#room-destroy-form'),
                 detailForm = $('#room-detail-form', section).roomDetailForm(function () {
-
+                    section.reload && section.reload();
                 });
 
             destroyForm.destroyForm({
@@ -181,11 +181,18 @@
                         .hide()
                         .fadeIn()
                         .trigger('detail-form-load-done', [data]);
+
+                    destroyForm.setFormValue(data);
                 });
                 section
                     .removeClass('empty-section');
+
                 options.load && options.load.call(section, _id);
                 return section;
+            };
+            section.reload = function () {
+                var _id = section.data('selected_id');
+                section.load(_id);
             };
             section.unload = function () {
                 section
@@ -222,7 +229,7 @@
                 btn.click(function (e) {
                     e.preventDefault();
                     var sure = confirm(l.msg.you_sure);
-                    if(sure)form.submit();
+                    if (sure)form.submit();
                 });
                 form
                     .ajaxForm(function () {
@@ -259,15 +266,15 @@
             })
                 .on('detail-form-load-done', function (e, data) {
                     var tmpl = hbs.templates['room-file-list-item'];
+                    data.files = data.files.map(function (data) {
+                        data.life = data.life && Number(data.life).toFixed(1);
+                        return data;
+                    });
                     roomFileList
                         .htmlHandlebars(tmpl, data.files)
                         .find('li')
                         .roomFileListItem();
                     roomUploadFormDiv.show();
-                    setTimeout(function () {
-
-//                        $('.setting-btn').click(); //FIXME remvoe
-                    }, 300)
                 });
 
         var _id = q._id;

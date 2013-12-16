@@ -7,5 +7,10 @@
         <input type="hidden" name="url" value="{{href}}"/>
         <button type="submit" class="room-file-destroy-btn">&times;</button>
     </form>
-    <a href="{{href}}" target="_blank" download="{{name}}">{{name}}</a>
+    <a href="{{href}}" target="_blank" download="{{name}}">
+        {{name}}
+        {{#if life}}
+            <span class="remain-lif-label">vanish in {{life}} days</span>
+        {{/if}}
+    </a>
 </li>
