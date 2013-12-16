@@ -58,14 +58,16 @@ v = (function (tek) {
                             return;
                         }
                     }
-                    var validateArgs = values.concat(function (err) {
+                    if(values.length <= 1){
+                        values = values.shift();
+                    }
+                    validator.validate(values, function (err) {
                         if (err) {
                             err.property = property;
                             errors.push(err);
                         }
                         next();
                     });
-                    validator.validate.apply(validator, validateArgs);
                 });
             },
             clone: function () {

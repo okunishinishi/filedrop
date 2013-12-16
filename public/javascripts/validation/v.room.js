@@ -18,8 +18,22 @@ v.room = (function (v) {
                 required: true
             },
             "privacy,private_password,private_password_again": {
-                conform: function (privacy, private_password, private_password_again) {
-                    console.log(arguments);
+                conform: function (values, callback) {
+                    var privacy = values[0],
+                        private_password = values[1],
+                        private_password_again = values[2];
+                    var err = null;
+                    switch (privacy) {
+                        case 'private':
+                            var password_match = private_password == private_password_again;
+                            if(!password_match){
+                                err = {
+                                    cause: 'password_mismatch'
+                                };
+                            }
+                            break;
+                    }
+                    callback && callback(err);
                 }
             }
         }),
