@@ -29,7 +29,7 @@ v = (function (tek) {
                     console.error('[v.js] unknown schema:', key, expect);
                 }
             },
-            validate: function (values, callback) {
+            validate: function (valueObj, callback) {
                 var isEmpty = tek.validators.Validator.isEmpty;
                 var s = this,
                     validators = s.validators,
@@ -46,19 +46,26 @@ v = (function (tek) {
 
                 validators.forEach(function (validator) {
                     var property = validator.property,
-                        value = values[property];
-                    var skip = isEmpty(value) && validator.skipIfEmpty;
-                    if (skip) {
-                        next();
-                        return;
+                        values = property.split(',').map(function (property) {
+                            return valueObj[property];
+                        });
+                    if (validator.skipIfEmpty) {
+                        var skip = values.filter(function (value) {
+                            return !isEmpty(value);
+                        }).length == 0;
+                        if (skip) {
+                            next();
+                            return;
+                        }
                     }
-                    validator.validate(value, function (err) {
+                    var validateArgs = values.concat(function (err) {
                         if (err) {
-                            err.property= property;
+                            err.property = property;
                             errors.push(err);
                         }
                         next();
                     });
+                    validator.validate.apply(validator, validateArgs);
                 });
             },
             clone: function () {
