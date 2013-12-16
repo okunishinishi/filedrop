@@ -84,11 +84,29 @@ exports.api = {
                             return;
                         }
                         copy.fallback(old, room);
-                        room.update(function (room) {
-                            res.json({
-                                room: room
+
+                        function updateAndSend(room) {
+                            room.update(function (room) {
+                                res.json({
+                                    room: room
+                                });
                             });
-                        });
+                        }
+
+                        var password_changed = room.private_password_changed &&
+                            (room.private_password != l.dummy_password);
+                        if (password_changed) {
+                            var private_password = room.private_password;
+                            delete room.private_password;
+                            delete room.private_password_again;
+                            Room.derive(private_password, room.salt, function (password_digest) {
+                                room.private_password_digest = password_digest;
+                                updateAndSend(room);
+                            });
+                        } else {
+                            updateAndSend(room);
+                        }
+
                     });
                 });
             });
@@ -99,6 +117,7 @@ exports.api = {
                     return;
                 }
                 var room = new Room(data);
+                room.salt = Room.newSalt();
                 room.save(function (room) {
                     res.json({
                         room: room

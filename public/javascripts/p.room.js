@@ -95,8 +95,8 @@
                             _id: data._id,
                             privacy: data.privacy,
                             retention: data.retention,
-                            private_password: 'xxxxxx',
-                            private_password_again: 'xxxxxx',
+                            private_password: l.dummy_password,
+                            private_password_again: l.dummy_password,
                             private_password_changed: 'false'
                         } || {});
                     $('#room-name-label').text(data.name);

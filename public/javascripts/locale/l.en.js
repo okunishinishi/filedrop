@@ -43,6 +43,7 @@ l = {
     "privacy": "privacy",
     "room_private_password_again": "password(again)",
     "room_settings": "settings",
+    "dummy_password": "__this_is_dummy_password",
     "msg": {
         "prove_human_please": "Prove you are human, not a bot.",
         "input_captcha_please": "type above number",

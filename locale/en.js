@@ -43,6 +43,7 @@ l.room_private_password = 'password';
 l.privacy = 'privacy';
 l.room_private_password_again = 'password(again)';
 l.room_settings = 'settings';
+l.dummy_password = '__this_is_dummy_password';
 
 
 l.msg = {};

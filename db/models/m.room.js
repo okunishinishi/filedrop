@@ -5,6 +5,7 @@
  */
 
 var tek = require('tek'),
+    auth = tek.auth,
     tekWeb = require('tek-web'),
     DB = tekWeb['DB'],
     defineModel = DB['defineModel'];
@@ -12,3 +13,10 @@ var tek = require('tek'),
 var Room = module.exports = defineModel({
     retention:3
 });
+
+Room.newSalt = function () {
+    return auth.newSalt();
+};
+Room.derive = function (password, salt, callback) {
+    return auth.derive(password, salt, callback);
+};

@@ -47,14 +47,14 @@ mixin room-detail-form
                             +label('private_password-input')=l.room_private_password
                         td
                             span.key-btn
-                            +password('private_password')(value='xxxxxx'))#private_password-input
+                            +password('private_password')(value=l.dummy_password))#private_password-input
                             +hidden('private_password_changed')(value='false')#private_password_changed-input
                     tr.private-key-tr
                         th
                             +label('private_password_again')=l.room_private_password_again
                         td
                             span.key-btn
-                            +password('private_password_again')(value='xxxxxx')#private_password_again-input
+                            +password('private_password_again')(value=l.dummy_password)#private_password_again-input
 
 
 
