@@ -11,11 +11,16 @@ v.room = (function (v) {
             _id: {
                 required: true
             },
-            name:{
-                required:true
+            name: {
+                required: true
             },
-            retention:{
-                required:true
+            retention: {
+                required: true
+            },
+            "privacy,private_password,private_password_again": {
+                conform: function (privacy, private_password, private_password_again) {
+                    console.log(arguments);
+                }
             }
         }),
         destroy: new Schema({

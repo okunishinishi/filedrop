@@ -82,7 +82,7 @@ v = (function (tek) {
         if (Validator) {
             return Validator
         } else {
-            if (typeof(value) === 'function') {
+            if (typeof(key) === 'function') {
                 return tek.validators['ConformValidator'];
             } else {
                 return null;
