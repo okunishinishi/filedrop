@@ -89,8 +89,23 @@ http.createServer(app).listen(app.get('port'), function () {
             console.log('backup done');
         });
     }
+
     backup();
     setInterval(backup, config.backup.interval);
+
+
+    var cleanInterval = 10 * 60 * 10000;
+
+    function clean() {
+        var util = require('./util');
+        util.clean.cleanRoomFiles(function () {
+            console.log('clean done');
+        });
+    }
+
+    setInterval(clean, cleanInterval);
+
+    clean();
 });
 
 
