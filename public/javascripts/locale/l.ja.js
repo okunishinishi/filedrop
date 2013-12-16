@@ -51,7 +51,8 @@ l = {
         "user_insert_done": "New user created",
         "password_did_change": "Password changed.",
         "has_unsaved": "Your have unsaved changes",
-        "you_sure": "Are you sure?"
+        "you_sure": "Are you sure?",
+        "upload_done": "upload done"
     },
     "err": {
         "something_worng": "Sorry! Something is wrong.",

@@ -34,7 +34,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<li>\n    <a href=\"";
+  buffer += "<li style=\"position: relative\">\n\n    <form class=\"inline-form float-right\"\n          method=\"post\"\n          name=\"destroy-form\"\n          action=\"";
+  if (stack1 = helpers.ctx) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.ctx; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "/api/room/destroy_file\">\n        <input type=\"hidden\" name=\"url\" value=\"";
+  if (stack1 = helpers.href) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.href; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"/>\n        <button type=\"submit\" class=\"room-file-destroy-btn\">&times;</button>\n    </form>\n    <a href=\"";
   if (stack1 = helpers.href) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.href; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -46,15 +54,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a>\n\n    <form class=\"inline-form float-right\"\n          method=\"post\"\n          name=\"destroy-form\"\n          action=\"";
-  if (stack1 = helpers.ctx) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.ctx; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "/api/room/destroy_file\">\n        <input type=\"hidden\" name=\"url\" value=\"";
-  if (stack1 = helpers.href) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.href; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"/>\n        <button type=\"submit\" class=\"room-file-destroy-btn\">&times;</button>\n    </form>\n</li>";
+    + "</a>\n</li>";
   return buffer;
   }
 	);

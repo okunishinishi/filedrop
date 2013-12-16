@@ -95,8 +95,8 @@
                             _id: data._id,
                             privacy: data.privacy,
                             retention: data.retention,
-                            private_password:'xxxxxx',
-                            private_password_again:'xxxxxx',
+                            private_password: 'xxxxxx',
+                            private_password_again: 'xxxxxx',
                             private_password_changed: 'false'
                         } || {});
                     $('#room-name-label').text(data.name);
@@ -206,7 +206,9 @@
             div.setRoomId = function (room_id) {
                 var action = [div.data('post'), room_id].join('/');
                 var msg = '<div class="upload-msg">Drag & Drop <br/>and </br>Share Your file!</br><span class="upload-btn"/></div>';
-                div.empty().dropUploadInput(action, 'room_file', msg);
+                div.empty().dropUploadInput(action, 'room_file', msg, function () {
+                    location.reload();
+                });
             };
             return div;
         },
@@ -215,7 +217,14 @@
                 var li = $(this);
                 if (li.data('room-file-list-item')) return;
                 li.data('room-file-list-item', true);
-                li.findByName('destroy-form')
+                var form = li.findByName('destroy-form'),
+                    btn = form.find(':submit');
+                btn.click(function (e) {
+                    e.preventDefault();
+                    var sure = confirm(l.msg.you_sure);
+                    if(sure)form.submit();
+                });
+                form
                     .ajaxForm(function () {
                         li.closeDown(300, function () {
                             li.remove();

@@ -54,7 +54,7 @@ l.msg.user_insert_done = 'New user created';
 l.msg.password_did_change = 'Password changed.';
 l.msg.has_unsaved = 'Your have unsaved changes';
 l.msg.you_sure = 'Are you sure?';
-
+l.msg.upload_done = 'upload done';
 
 l.err = {};
 l.err.something_worng = 'Sorry! Something is wrong.';

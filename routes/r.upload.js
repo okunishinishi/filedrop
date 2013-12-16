@@ -43,6 +43,7 @@ function saveFiles(save_dirpath, files, callback) {
 }
 
 exports.room_file = function (req, res) {
+    var l = res.locals.l;
     var queue = new JobQueue;
     var result = {};
     var room_id = req.params['room_id'];
@@ -57,6 +58,7 @@ exports.room_file = function (req, res) {
         });
     });
     queue.execute(function () {
+        req.flash('info_alert', l.msg.upload_done);
         res.send(JSON.stringify(result));
     });
 };
