@@ -99,8 +99,9 @@ nav {
 }
 
 
-caption{
+caption, .caption{
   text-align: left;
+  color:darken(@accent, 40);
 }
 
 /**
@@ -249,9 +250,6 @@ ul{
     top:@margin;
   }
 }
-.caption,caption{
-  color:#AAA;
-}
 .y-scrollable{
   overflow-y: auto;
   width:100%;
@@ -273,6 +271,10 @@ ul{
 .setting-btn{
   .ion-btn("\f2ad");
 }
+.upload-btn{
+  .ion-btn("\f255");
+}
+
 &.privacy-private{
   .private-btn;
   &:before{

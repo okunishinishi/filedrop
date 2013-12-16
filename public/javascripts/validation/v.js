@@ -36,6 +36,11 @@ v = (function (tek) {
                     count = validators.length,
                     errors = [];
 
+                if (!validators.length) {
+                    callback(null);
+                    return;
+                }
+
                 function next() {
                     count--;
                     var finish = count <= 0;
@@ -58,7 +63,7 @@ v = (function (tek) {
                             return;
                         }
                     }
-                    if(values.length <= 1){
+                    if (values.length <= 1) {
                         values = values.shift();
                     }
                     validator.validate(values, function (err) {

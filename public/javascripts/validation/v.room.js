@@ -5,7 +5,9 @@ v.room = (function (v) {
     var Schema = v.Schema;
     return {
         insert: new Schema({
-
+            name: {
+                required:    true
+            }
         }),
         update: new Schema({
             _id: {

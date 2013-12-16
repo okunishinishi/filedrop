@@ -58,8 +58,8 @@ get('/admin/master', admin.master);
 
 var room = r['room'];
 get('/room', room.index);
+get('/api/room/:_id', room.api.one);
+get('/api/room.json', room.api.list);
 post('/api/room/save', room.api.save);
 post('/api/room/destroy', room.api.destroy);
-get('/api/room.json', room.api.list);
-get('/api/room/:_id', room.api.one);
 post('/api/room/destroy_file', room.api.destroy_file);

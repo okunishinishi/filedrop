@@ -199,7 +199,8 @@
             var div = $(this);
             div.setRoomId = function (room_id) {
                 var action = [div.data('post'), room_id].join('/');
-                div.empty().dropUploadInput(action, 'room_file');
+                var msg = '<div class="upload-msg">Drag & Drop <br/>and </br>Share Your file!</br><span class="upload-btn"/></div>';
+                div.empty().dropUploadInput(action, 'room_file', msg);
             };
             return div;
         },
