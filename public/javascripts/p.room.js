@@ -94,7 +94,10 @@
                             name: data.name,
                             _id: data._id,
                             privacy: data.privacy,
-                            retention: data.retention
+                            retention: data.retention,
+                            private_password:'xxxxxx',
+                            private_password_again:'xxxxxx',
+                            private_password_changed: 'false'
                         } || {});
                     $('#room-name-label').text(data.name);
                     form.viewMode();
@@ -124,6 +127,9 @@
                 .on('click', function () {
                     if (form.data('room-detail-form-busy')) return;
                     form.viewMode();
+                })
+                .on('change', '#private_password-input,#private_password_again-input', function () {
+                    $('#private_password_changed-input').val('true');
                 });
 
             function display() {

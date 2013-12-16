@@ -10,7 +10,7 @@ module.exports = {
         {
             _id: "48${padZero(rownum, 22)}",
             name: "${flower}",
-            privacy: "${choice('public', 'private')}"
+            privacy: "${choice('public', 'public')}"
         }.repeat(10)
     ]
 };
