@@ -34,7 +34,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<li style=\"position: relative\">\n\n    <form class=\"inline-form float-right\"\n          method=\"post\"\n          name=\"destroy-form\"\n          action=\"";
+  buffer += "<li style=\"position: relative\" class=\"room-file-list-item\">\n\n    <form class=\"inline-form float-right\"\n          method=\"post\"\n          name=\"destroy-form\"\n          action=\"";
   if (stack1 = helpers.ctx) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.ctx; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
