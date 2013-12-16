@@ -16,7 +16,7 @@ mixin room-detail-form
             +empty-link#room-detail-close-btn.close-btn.stick-right.stick-top &times;
             +hidden('_id')
             .float-right.hoverable-child
-                +empty-link(l.room_settings).margin-link.setting-btn
+                +empty-link(capitalize(l.room_settings)).margin-link.setting-btn
                 +destroy-btn()#room-destroy-btn
             h1
                 #room-name-label

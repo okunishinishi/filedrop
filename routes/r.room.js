@@ -32,27 +32,31 @@ function readRoomFiles(room_id, callback) {
                 return;
             }
             var queue = new JobQueue;
-            date_strings.forEach(function (date_string) {
-                queue.push(function (next) {
-                    var date_dirpath = resolve(room_file_dirpath, date_string);
-                    fs.readdir(date_dirpath, function (err, filenames) {
-                        if (err) {
-                            callback && callback(err);
-                            callback = null;
-                            return;
-                        }
-                        filenames.forEach(function (filename) {
-                            var filepath = resolve(date_dirpath, filename),
-                                url = '/' + relative(config.publicDir, filepath);
-                            result.push({
-                                href: url,
-                                name: path.basename(url)
+            date_strings
+                .sort(function (a, b) {
+                    return Number(b) - Number(a);
+                })
+                .forEach(function (date_string) {
+                    queue.push(function (next) {
+                        var date_dirpath = resolve(room_file_dirpath, date_string);
+                        fs.readdir(date_dirpath, function (err, filenames) {
+                            if (err) {
+                                callback && callback(err);
+                                callback = null;
+                                return;
+                            }
+                            filenames.forEach(function (filename) {
+                                var filepath = resolve(date_dirpath, filename),
+                                    url = '/' + relative(config.publicDir, filepath);
+                                result.push({
+                                    href: url,
+                                    name: path.basename(url)
+                                });
                             });
+                            next();
                         });
-                        next();
                     });
                 });
-            });
             queue.execute(function () {
                 callback(null, result);
             });

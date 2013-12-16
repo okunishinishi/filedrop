@@ -44,7 +44,7 @@ col:nth-child(1) {
   opacity: .5;
   position: absolute;
   right: 0;
-  top:-5px;
+  top: -5px;
   &:hover {
     opacity: 1;
   }
@@ -52,22 +52,23 @@ col:nth-child(1) {
 
 #file-upload-div {
   margin-right: 40px;
+  margin-bottom:30px;
 }
 
 #room-detail-form {
-  &[data-mode="view"]{
-    .private-key-tr{
-      .tk-editable-label{
+  &[data-mode="view"] {
+    .private-key-tr {
+      .tk-editable-label {
         display: none !important;
       }
-      .key-btn:after{
-        content:"****";
+      .key-btn:after {
+        content: "****";
       }
     }
-    #room-detail-close-btn{
+    #room-detail-close-btn {
       display: none !important;
     }
-    #room-detail-table{
+    #room-detail-table {
       display: none !important;
     }
   }
@@ -75,72 +76,92 @@ col:nth-child(1) {
     .cover(501);
     position: fixed;
     .black-back(.5);
-    .setting-btn{
+    #room-destroy-btn,
+    .setting-btn {
       display: none !important;
     }
-    &> .input-err-msg{
+    & > .input-err-msg {
       position: relative;
       top: 135px;
       z-index: 501;
     }
-    #room-detail-form-inner{
+    #room-detail-form-inner {
       position: relative;
       max-width: 600px;
       margin: 60px auto;
       background-color: @white;
       padding: 10px 20px;
-      .close-btn{
-        top:5px;
-        right:5px;
+      .close-btn {
+        top: 5px;
+        right: 5px;
         display: inline-block;
         padding: 2px 4px;
       }
-      td{
+      td {
         text-align: left;
       }
     }
-    h1{
-      border-bottom:none;
+    h1 {
+      border-bottom: none;
     }
   }
-  h1{
+  h1 {
     border-bottom: 1px solid @border;
   }
 }
 
-.tk-upload-form{
-  .box-shadow(1px 1px 6px rgba(0,0,0,0.5) inset;);
+.tk-upload-form {
+  .box-shadow(1px 1px 6px rgba(0, 0, 0, 0.5) inset;);
   border-radius: 2px;
   .square(300px);
   float: left;
-  .upload-btn{
+  .upload-btn {
     font-size: 2em;
   }
-  .upload-msg{
-    margin-top:15px;
+  .upload-msg {
+    margin-top: 15px;
   }
 }
-#room-file-list{
-  li > a{
+
+#room-file-list {
+  li > a {
     padding: 2px 4px;
+    .transition(font-size 200ms;);
+  }
+  li {
+
+    .remain-lif-label, .inline-form {
+      opacity: .25;
+    }
+    &:hover {
+      a{
+        font-size:1.25em;
+      }
+      .remain-lif-label, .inline-form {
+        opacity: .75;
+      }
+    }
   }
 }
-.room-file-list-item{
+
+.room-file-list-item {
   opacity: .75;
-  &:hover{
+  &:hover {
     opacity: 1;
   }
-  a{
+  a {
     display: block;
   }
 }
-.alert{
+
+.alert {
   margin: 0 26px;
 }
-.remain-lif-label{
+
+.remain-lif-label {
   display: inline-block;
   font-size: .75em;
   opacity: .5;
   .rotate(5deg);
-  margin-left: 10px;
+  margin-left: 20px;
 }

@@ -27,7 +27,7 @@ mixin edit-btn()
     +empty-link(l.edit)(attributes).edit-btn
 
 mixin destroy-btn()
-    +empty-link(l.destroy)(attributes).destroy-btn
+    +empty-link(capitalize(l.destroy))(attributes).destroy-btn
 
 mixin new-btn()
     +empty-link(l.new)(attributes).wide-btn.new-btn.btn

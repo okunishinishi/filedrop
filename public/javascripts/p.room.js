@@ -261,6 +261,7 @@
                 },
                 destroy: function (_id) {
                     $.pushQueryToState({_id: ''});
+                    roomFileList.empty();
                     listSection.find('#room-list-item-' + _id).remove();
                 }
             })
@@ -296,7 +297,7 @@
             setTimeout(function () {
                 var wide = aside.hasClass('wide-aside');
                 aside.find('.y-scrollable').css({
-                    maxHeight: wide ? 'none' : detailSection.height() || $(window).height()
+                    maxHeight: wide ? 'none' : $(window).height()
                 });
             }, 3);
         };
