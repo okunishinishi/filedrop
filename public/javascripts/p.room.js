@@ -152,6 +152,7 @@
         roomDetailSection: function (options) {
             var section = $(this).show(),
                 destroyForm = $('#room-destroy-form'),
+                enterForm = $('#room-enter-form'),
                 detailForm = $('#room-detail-form', section).roomDetailForm(function () {
                     section.reload && section.reload();
                 });
@@ -164,6 +165,10 @@
                 var _id = section.data('selected_id');
                 options.destroy && options.destroy.call(section, _id);
                 section.unload();
+            });
+
+            enterForm.ajaxForm(v.room.enter, function (data) {
+                console.log(data);
             });
             section.load = function (_id) {
                 if (!_id) {
@@ -183,6 +188,7 @@
                         .trigger('detail-form-load-done', [data]);
 
                     destroyForm.setFormValue(data);
+                    enterForm.setFormValue(data);
                 });
                 section
                     .removeClass('empty-section');

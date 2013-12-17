@@ -44,6 +44,9 @@ l.privacy = 'privacy';
 l.room_private_password_again = 'password(again)';
 l.room_settings = 'settings';
 l.dummy_password = '__this_is_dummy_password';
+l.enter = 'enter';
+l.remember_me = 'remember me';
+l.room_password = 'room password';
 
 
 l.msg = {};
@@ -59,6 +62,7 @@ l.msg.upload_done = 'Upload Done!';
 
 l.err = {};
 l.err.something_worng = 'Sorry! Something is wrong.';
+l.err.something_wrong = 'Sorry! Something is wrong.';
 l.err.password_mismatch = "Password doesn't match.";
 l.err.required = '${label} is required';
 l.err.fail_captcha = "doesn't match";

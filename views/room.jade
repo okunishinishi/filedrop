@@ -10,6 +10,18 @@ mixin room-search-form
 mixin room-destroy-form
     +destroy-form(action=url('/api/room/destroy'), attributes).invisible-form
         +hidden('_id')
+
+mixin room-enter-form
+    +post-form(action=url('/api/room/enter'),attributes).cover.room-enter-form
+        .room-enter-form-inner
+            +hidden('_id')
+            +password('private_password').wide-input.large-font(placeholder=l.room_password)
+
+            input(type='checkbox', name='remember_me')#remember_me-check
+            +label('remember_me-check')=l.remember_me
+
+            +submit-btn(capitalize(l.enter)).large-font
+
 mixin room-detail-form
     +detail-form(action=url('/api/room/save'), autocomplete='off', attributes)
         #room-detail-form-inner
@@ -77,6 +89,7 @@ block content
     article
         section#room-detail-section(data-ref=url('/api/room/:_id'))
             +room-destroy-form#room-destroy-form
+            +room-enter-form#room-enter-form
             +room-detail-form#room-detail-form
             .float-left#file-upload-div(data-post=url('/upload/room_file'))
 

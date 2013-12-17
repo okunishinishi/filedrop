@@ -6,7 +6,15 @@ v.room = (function (v) {
     return {
         insert: new Schema({
             name: {
-                required:    true
+                required: true
+            }
+        }),
+        enter: new Schema({
+            _id: {
+                required: true
+            },
+            private_password: {
+                required: true
             }
         }),
         update: new Schema({
@@ -28,7 +36,7 @@ v.room = (function (v) {
                     switch (privacy) {
                         case 'private':
                             var password_match = private_password == private_password_again;
-                            if(!password_match){
+                            if (!password_match) {
                                 err = {
                                     cause: 'password_mismatch'
                                 };

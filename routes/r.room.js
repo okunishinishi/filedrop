@@ -208,5 +208,34 @@ exports.api = {
                 res.json({});
             }
         });
+    },
+    enter: function (req, res) {
+        var body = req.body || {},
+            l = res.locals.l,
+            _id = body._id,
+            password = body.private_password;
+
+        function success(room) {
+            res.json({
+                success: true,
+                room: room
+            });
+        }
+
+        function fail(err) {
+            res.json({
+                err_alert: err
+            });
+        }
+
+        Room.findById(_id, function (room) {
+            if (!room) {
+                fail(l.err.something_wrong);
+                return;
+            }
+            Room.derive(password, room.salt, function (password_digest) {
+                success(room);
+            });
+        });
     }
 };

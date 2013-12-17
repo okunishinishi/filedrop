@@ -60,6 +60,7 @@ var room = r['room'];
 get('/room', room.index);
 get('/api/room/:_id', room.api.one);
 get('/api/room.json', room.api.list);
+post('/api/room/enter', room.api.enter);
 post('/api/room/save', room.api.save);
 post('/api/room/destroy', room.api.destroy);
 post('/api/room/destroy_file', room.api.destroy_file);

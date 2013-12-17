@@ -44,6 +44,9 @@ l = {
     "room_private_password_again": "password(again)",
     "room_settings": "settings",
     "dummy_password": "__this_is_dummy_password",
+    "enter": "enter",
+    "remember_me": "remember me",
+    "room_password": "room password",
     "msg": {
         "prove_human_please": "Prove you are human, not a bot.",
         "input_captcha_please": "type above number",
@@ -57,6 +60,7 @@ l = {
     },
     "err": {
         "something_worng": "Sorry! Something is wrong.",
+        "something_wrong": "Sorry! Something is wrong.",
         "password_mismatch": "Password doesn't match.",
         "required": "${label} is required",
         "fail_captcha": "doesn't match",
