@@ -1,6 +1,10 @@
 filedrop
 ======
 
+Web app to share files.
+
+![capture](doc/img/capture.png "capture")
+
 
 requirements
 ------
@@ -13,4 +17,9 @@ quick start
 ```bash
     npm install
     node app.js
+```
+
+Load test data
+```bash
+    node test/data/load_data.js 
 ```
